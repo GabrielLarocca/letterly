@@ -1,0 +1,24 @@
+@baseUrl = http://localhost:8000/api
+@contentType = application/json
+
+### Create payment
+POST {{baseUrl}}/payments
+Content-Type: {{contentType}}
+
+{
+    "letterId": 1,
+    "userId": 1,
+    "amount": 9.99,
+    "currency": "USD",
+    "paymentMethod": "credit_card",
+    "paymentStatus": "completed",
+    "transactionId": "tx_123456"
+}
+
+### Get payment by ID
+GET {{baseUrl}}/payments/1
+Content-Type: {{contentType}}
+
+### Get payments by user ID
+GET {{baseUrl}}/users/1/payments
+Content-Type: {{contentType}} 

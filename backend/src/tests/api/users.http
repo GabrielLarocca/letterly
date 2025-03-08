@@ -1,0 +1,119 @@
+@baseUrl = http://localhost:8000/api
+@contentType = application/json
+
+### Get all users
+GET {{baseUrl}}/users
+Content-Type: {{contentType}}
+
+### Get user by ID
+GET {{baseUrl}}/users/1
+Content-Type: {{contentType}}
+
+### Create new user
+POST {{baseUrl}}/users
+Content-Type: {{contentType}}
+
+{
+    "name": "John Doe",
+    "email": "john@example.com",
+    "password": "123456"
+}
+
+### Update user
+PUT {{baseUrl}}/users/1
+Content-Type: {{contentType}}
+
+{
+    "name": "John Doe Updated",
+    "email": "john.updated@example.com"
+}
+
+### Delete user
+DELETE {{baseUrl}}/users/1
+Content-Type: {{contentType}}
+
+### Create another user (for testing)
+POST {{baseUrl}}/users
+Content-Type: {{contentType}}
+
+{
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "password": "123456"
+}
+
+### Create Plan
+POST {{baseUrl}}/plans
+Content-Type: {{contentType}}
+
+{
+    "name": "Basic Plan",
+    "photoLimit": 5,
+    "musicAllowed": false,
+    "customization": {
+        "fonts": ["Arial", "Times New Roman"],
+        "colors": ["#000000", "#FFFFFF"]
+    },
+    "expiryDuration": "1 year",
+    "price": 9.99
+}
+
+### Get all plans
+GET {{baseUrl}}/plans
+Content-Type: {{contentType}}
+
+### Get plan by ID
+GET {{baseUrl}}/plans/1
+Content-Type: {{contentType}}
+
+### Create Letter
+POST {{baseUrl}}/letters
+Content-Type: {{contentType}}
+
+{
+    "userId": 1,
+    "planId": 1,
+    "phrase": "Happy Birthday!",
+    "font": "Arial",
+    "colorScheme": "blue",
+    "animation": "fade",
+    "uniqueLink": "birthday-2024"
+}
+
+### Get all letters
+GET {{baseUrl}}/letters
+Content-Type: {{contentType}}
+
+### Get letter by ID
+GET {{baseUrl}}/letters/1
+Content-Type: {{contentType}}
+
+### Add photo to letter
+POST {{baseUrl}}/photos
+Content-Type: {{contentType}}
+
+{
+    "letterId": 1,
+    "imageUrl": "https://example.com/photo1.jpg",
+    "displayOrder": 1
+}
+
+### Get photos by letter ID
+GET {{baseUrl}}/letters/1/photos
+Content-Type: {{contentType}}
+
+### Create payment
+POST {{baseUrl}}/payments
+Content-Type: {{contentType}}
+
+{
+    "letterId": 1,
+    "userId": 1,
+    "amount": 9.99,
+    "currency": "USD",
+    "paymentMethod": "credit_card",
+    "paymentStatus": "completed",
+    "transactionId": "tx_123456"
+}
+
+### Get payment

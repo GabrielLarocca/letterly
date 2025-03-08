@@ -1,0 +1,28 @@
+@baseUrl = http://localhost:8000/api
+@contentType = application/json
+
+### Create Letter
+POST {{baseUrl}}/letters
+Content-Type: {{contentType}}
+
+{
+    "userId": 1,
+    "planId": 1,
+    "phrase": "Happy Birthday!",
+    "font": "Arial",
+    "colorScheme": "blue",
+    "animation": "fade",
+    "uniqueLink": "birthday-2024"
+}
+
+### Get all letters
+GET {{baseUrl}}/letters
+Content-Type: {{contentType}}
+
+### Get letter by ID
+GET {{baseUrl}}/letters/1
+Content-Type: {{contentType}}
+
+### Get photos by letter ID
+GET {{baseUrl}}/letters/1/photos
+Content-Type: {{contentType}} 

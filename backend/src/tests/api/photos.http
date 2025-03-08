@@ -1,0 +1,12 @@
+@baseUrl = http://localhost:8000/api
+@contentType = application/json
+
+### Add photo to letter
+POST {{baseUrl}}/photos
+Content-Type: {{contentType}}
+
+{
+    "letterId": 1,
+    "imageUrl": "https://example.com/photo1.jpg",
+    "displayOrder": 1
+} 
