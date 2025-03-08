@@ -3,11 +3,27 @@ import { useEffect, useRef, useState } from 'react';
 interface EmojiRainProps {
   emoji: string;
   active: boolean;
+  /** Permite desativar a animação para usuários que preferem movimento reduzido */
+  respectReducedMotion?: boolean;
 }
 
-export function EmojiRain({ emoji, active }: EmojiRainProps) {
+export function EmojiRain({ emoji, active, respectReducedMotion = true }: EmojiRainProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isActive, setIsActive] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  
+  // Verificar preferência de movimento reduzido
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches && respectReducedMotion);
+    
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches && respectReducedMotion);
+    };
+    
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, [respectReducedMotion]);
   
   // Garantir que a chuva seja ativada
   useEffect(() => {
@@ -17,7 +33,7 @@ export function EmojiRain({ emoji, active }: EmojiRainProps) {
   }, [active]);
   
   useEffect(() => {
-    if (!isActive || !emoji || !containerRef.current) return;
+    if (!isActive || !emoji || !containerRef.current || prefersReducedMotion) return;
     
     console.log("Iniciando chuva de emojis:", emoji);
     
@@ -34,6 +50,7 @@ export function EmojiRain({ emoji, active }: EmojiRainProps) {
       
       const emojiElement = document.createElement('div');
       emojiElement.textContent = emoji;
+      emojiElement.setAttribute('aria-hidden', 'true'); // Ocultar dos leitores de tela
       emojiElement.style.position = 'absolute';
       emojiElement.style.fontSize = `${Math.random() * 20 + 10}px`;
       emojiElement.style.left = `${Math.random() * containerWidth}px`;
@@ -75,7 +92,19 @@ export function EmojiRain({ emoji, active }: EmojiRainProps) {
         containerRef.current.innerHTML = '';
       }
     };
-  }, [emoji, isActive]);
+  }, [emoji, isActive, prefersReducedMotion]);
+  
+  // Se preferir movimento reduzido, mostrar apenas um emoji estático
+  if (prefersReducedMotion && isActive) {
+    return (
+      <div 
+        aria-hidden="true"
+        className="absolute top-4 right-4 text-3xl"
+      >
+        {emoji}
+      </div>
+    );
+  }
   
   return (
     <div 
@@ -85,6 +114,7 @@ export function EmojiRain({ emoji, active }: EmojiRainProps) {
         pointerEvents: 'none',
         minHeight: '500px'
       }}
+      aria-hidden="true" // Ocultar dos leitores de tela
     />
   );
 } 

@@ -40,9 +40,12 @@ export function ImageUpload({ maxImages, images, onImagesChange }: ImageUploadPr
         className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-colors ${
           isDragActive ? "border-primary bg-primary/5" : "border-gray-300 hover:border-primary"
         }`}
+        role="button"
+        tabIndex={0}
+        aria-label="Área para upload de imagens. Clique ou arraste arquivos para cá."
       >
-        <input {...getInputProps()} />
-        <ImageIcon className="mx-auto h-12 w-12 text-gray-400 mb-4" />
+        <input {...getInputProps()} aria-label="Upload de imagens" />
+        <ImageIcon className="mx-auto h-12 w-12 text-gray-400 mb-4" aria-hidden="true" />
         <p className="text-sm text-gray-600">
           {isDragActive
             ? "Solte suas fotos aqui..."
@@ -54,19 +57,24 @@ export function ImageUpload({ maxImages, images, onImagesChange }: ImageUploadPr
       </div>
 
       {images.length > 0 && (
-        <div className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
+        <div 
+          className="mt-4 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4"
+          role="list"
+          aria-label="Imagens carregadas"
+        >
           {images.map((image, index) => (
-            <div key={index} className="relative group">
+            <div key={index} className="relative group" role="listitem">
               <img
                 src={image}
-                alt={`Uploaded ${index + 1}`}
+                alt={`Imagem carregada ${index + 1}`}
                 className="w-full h-24 object-cover rounded-lg"
               />
               <button
                 onClick={() => removeImage(index)}
                 className="absolute -top-2 -right-2 bg-destructive text-white rounded-full p-1 opacity-0 group-hover:opacity-100 transition-opacity"
+                aria-label={`Remover imagem ${index + 1}`}
               >
-                <X className="h-4 w-4" />
+                <X className="h-4 w-4" aria-hidden="true" />
               </button>
             </div>
           ))}
