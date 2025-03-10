@@ -73,14 +73,9 @@ export const letterService = {
     
     // Adicionar cada foto ao formData
     photos.forEach((photo, index) => {
-      // Usar apenas 'photos' como nome do campo, não 'photos[index]'
       formData.append('photos', photo);
     });
     
-    for (var pair of formData.entries()) {
-      console.log(pair[0]+ ', ' + pair[1]); 
-    }
-  
     try {
       const response = await fetch(`${API_URL}/letters/`, {
         method: "POST",

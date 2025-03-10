@@ -1,6 +1,6 @@
 import request from 'supertest';
 import app from '../../app';
-import { createTestUser, createTestPlan } from '../helpers';
+import { createTestUser, createAllPlans } from '../helpers';
 
 describe('Letter Integration Tests', () => {
   let testUser: any;
@@ -8,7 +8,7 @@ describe('Letter Integration Tests', () => {
 
   beforeAll(async () => {
     testUser = await createTestUser();
-    testPlan = await createTestPlan();
+    testPlan = await createAllPlans();
   });
 
   it('should create a letter successfully', async () => {
@@ -17,7 +17,7 @@ describe('Letter Integration Tests', () => {
       .set('Authorization', `Bearer ${testUser.token}`)
       .send({
         phrase: 'Test letter',
-        planId: testPlan.id
+        planId: testPlan[0].id
       });
 
     expect(response.status).toBe(201);

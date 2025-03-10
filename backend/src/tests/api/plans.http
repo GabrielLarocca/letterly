@@ -24,3 +24,24 @@ Content-Type: {{contentType}}
 ### Get plan by ID
 GET {{baseUrl}}/plans/1
 Content-Type: {{contentType}} 
+
+### Delete plan by ID
+DELETE {{baseUrl}}/plans/1
+Content-Type: {{contentType}} 
+
+### Update plan by ID
+PUT {{baseUrl}}/plans/1
+Content-Type: {{contentType}}
+
+{
+    "name": "Updated Plan",
+    "photoLimit": 10,
+    "musicAllowed": true,
+    "customization": {
+        "fonts": ["Arial", "Times New Roman"],
+        "colors": ["#000000", "#FFFFFF"]
+    },
+    "expiryDuration": "2 years",
+    "price": 19.99
+}
+

@@ -5,7 +5,9 @@ export interface Plan {
   name: string;
   photoLimit: number;
   musicAllowed: boolean;
-  customization?: any;
+  customization: {
+    features: string[];
+  };
   expiryDuration?: string;
   price: number;
   createdAt: string;

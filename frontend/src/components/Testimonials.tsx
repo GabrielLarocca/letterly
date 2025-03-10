@@ -1,21 +1,24 @@
 export const Testimonials = () => {
   const testimonials = [
     {
-      name: "Sarah Johnson",
-      role: "Birthday Letter",
-      content: "I created a birthday letter for my sister and she loved it! The music and photos made it so special.",
+      name: "Milena Rodrigues",
+      role: "Carta de Aniversário",
+      content:
+        "Criei uma carta de aniversário para minha irmã e ela adorou! A música e as fotos tornaram tudo mais especial.",
       image: "/clients/1.jpeg",
     },
     {
-      name: "Michael Chen",
-      role: "Anniversary Letter",
-      content: "The perfect way to express my feelings. The templates helped me write something truly meaningful.",
+      name: "Jonas Silva",
+      role: "Carta de Amor",
+      content:
+        "O jeito perfeito de expressar meus sentimentos. Os templates me ajudaram a escrever algo realmente significativo.",
       image: "/clients/2.jpeg",
     },
     {
-      name: "Emma Davis",
-      role: "Graduation Letter",
-      content: "Created an amazing graduation letter for my best friend. The customization options are incredible!",
+      name: "Ana Oliveira",
+      role: "Carta de Formatura",
+      content:
+        "Criei uma carta de formatura incrível para meu melhor amigo. As opções de customização são incríveis!",
       image: "/clients/3.jpeg",
     },
   ];
@@ -23,7 +26,9 @@ export const Testimonials = () => {
   return (
     <section className="py-16 px-4">
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl font-bold text-center mb-12">What Our Users Say</h2>
+        <h2 className="text-3xl font-bold text-center mb-12">
+          O que nossos usuários falam
+        </h2>
         <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial, index) => (
             <div

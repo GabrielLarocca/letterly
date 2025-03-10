@@ -5,6 +5,7 @@ dotenv.config();
 
 import app from './app';
 import sequelize from './config/database';
+import { createPlans } from './controllers/plan.controller';
 
 const PORT = process.env.PORT || 8000;
 
@@ -29,6 +30,10 @@ const startServer = async () => {
     // Sincronização dos modelos
     await sequelize.sync({ alter: true });
     console.log('✅ Modelos sincronizados com o banco de dados.');
+
+    // Criação dos planos
+    await createPlans();
+    console.log('✅ Planos criados com sucesso.');
 
     // Iniciar servidor
     app.listen(PORT, () => {

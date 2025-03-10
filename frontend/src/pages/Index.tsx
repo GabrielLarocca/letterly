@@ -16,7 +16,11 @@ export default function Index() {
     <main className="min-h-screen">
       <Hero />
       <Features />
-      <PricingPlans onSelectPlan={handleSelectPlan} selectedPlan={selectedPlan} />
+      <PricingPlans
+        onSelectPlan={handleSelectPlan}
+        selectedPlan={selectedPlan}
+        landingPage
+      />
       <WhyChooseUs />
       <Testimonials />
     </main>
